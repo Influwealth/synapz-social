@@ -1,0 +1,47 @@
+version: '3.9'
+# SynapZ-Social Production Stack
+# API · Web · Grafana (ICP runs via dfx, not Docker)
+
+services:
+  api:
+    build: ./apps/api
+    container_name: synapz-social-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${API_PORT:-4001}:4001"
+    environment:
+      NODE_ENV: production
+      SYNAPZ_CORE_URL: ${SYNAPZ_CORE_URL:-http://host.docker.internal:4000}
+    labels:
+      - "sap.node=synapz-social-api"
+      - "sap.version=1.0"
+
+  web:
+    build: ./apps/web
+    container_name: synapz-social-web
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3002}:80"
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: synapz-social-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-sovereign}
+    volumes:
+      - grafanadata:/var/lib/grafana
+      - ./infrastructure/grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    ports:
+      - "${GRAFANA_PORT:-3003}:3000"
+
+volumes:
+  grafanadata:
+
+networks:
+  default:
+    name: synapz-social-net

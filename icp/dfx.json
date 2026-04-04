@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "canisters": {
+    "social_graph": {
+      "type": "motoko",
+      "main": "canisters/social_graph/src/social_graph.mo"
+    },
+    "content_feed": {
+      "type": "motoko",
+      "main": "canisters/content_feed/src/content_feed.mo"
+    },
+    "creator_economy": {
+      "type": "motoko",
+      "main": "canisters/creator_economy/src/creator_economy.mo"
+    },
+    "moderation": {
+      "type": "motoko",
+      "main": "canisters/moderation/src/moderation.mo"
+    },
+    "media_registry": {
+      "type": "motoko",
+      "main": "canisters/media_registry/src/media_registry.mo"
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": ["https://icp0.io"],
+      "type": "persistent"
+    }
+  }
+}

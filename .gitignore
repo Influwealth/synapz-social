@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.pnp / .pnp.js
+
+# Builds
+dist/ / build/ / out/ / *.tsbuildinfo
+
+# Environment
+.env / .env.local / .env.*.local
+
+# ICP / DFX
+.dfx/
+.vessel/
+canister_ids.json
+canister_ids_local.json
+declarations/
+
+# Logs
+*.log / npm-debug.log* / logs/
+
+# OS
+.DS_Store / Thumbs.db / .vscode/ / .idea/
+
+# Coverage
+coverage/
+
+# Docker local volumes
+postgres_data/ / redis_data/
+
+# Grafana local data
+infrastructure/grafana/data/

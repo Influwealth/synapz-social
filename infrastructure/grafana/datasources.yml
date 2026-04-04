@@ -1,0 +1,6 @@
+apiVersion: 1
+datasources:
+  - name: SynapZ-Social-API
+    type: prometheus
+    url: http://synapz-social-api:4001/metrics
+    isDefault: true

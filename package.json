@@ -1,0 +1,25 @@
+{
+  "name": "synapz-social",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SynapZ Social — Sovereign Social Network Platform. ICP-native. WealthBridge OS aligned.",
+  "author": "InfluWealth Quantum Labs",
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev:api"       : "npm --workspace apps/api run dev",
+    "dev:web"       : "npm --workspace apps/web run dev",
+    "dev"           : "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "build"         : "npm run build --workspaces --if-present",
+    "test"          : "npm run test --workspaces --if-present",
+    "lint"          : "npm run lint --workspaces --if-present",
+    "icp:start"     : "dfx start --background",
+    "icp:deploy"    : "dfx deploy",
+    "icp:deploy:ic" : "dfx deploy --network ic",
+    "icp:stop"      : "dfx stop",
+    "docker:up"     : "docker-compose up -d",
+    "docker:down"   : "docker-compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
